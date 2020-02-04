@@ -59,7 +59,11 @@ function displayGifs() {
   
                 // Giving the image tag an src attribute of a proprty pulled off the
                 // result item
-                topicImage.attr("src", results[i].images.fixed_height.url);
+                topicImage.attr("src", results[i].images.fixed_height_still.url);
+                topicImage.attr("data-still", results[i].images.fixed_height_still.url);
+                topicImage.attr("data-animate", results[i].images.fixed_height.url);
+                topicImage.attr("data-state", "still");
+                topicImage.addClass("gif");
   
                 // Appending the paragraph and personImage we created to the "gifDiv" div we created
                 gifDiv.append(p);
@@ -124,7 +128,11 @@ $("#topicSubmit").on("click", function() {
   
                 // Giving the image tag an src attribute of a proprty pulled off the
                 // result item
-                topicImage.attr("src", results[i].images.fixed_height.url);
+                topicImage.attr("src", results[i].images.fixed_height_still.url);
+                topicImage.attr("data-still", results[i].images.fixed_height_still.url);
+                topicImage.attr("data-animate", results[i].images.fixed_height.url);
+                topicImage.attr("data-state", "still");
+                topicImage.addClass("gif");
   
                 // Appending the paragraph and personImage we created to the "gifDiv" div we created
                 gifDiv.append(p);
@@ -140,5 +148,18 @@ $("#topicSubmit").on("click", function() {
 })
 
 $(document).on("click", ".topicButton", displayGifs);
+
+function animateGif () {
+    var state = $(this).attr("data-state");
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
+}
+
+$(document).on("click", ".gif", animateGif);
 
 renderButtons();
