@@ -2,11 +2,10 @@ var topics = ["Mario", "Sonic", "Spyro", "Tetris", "Dungeons & Dragons"]
 
 function renderButtons() {
 
-    // Deleting the movies prior to adding new movies
-    // (this is necessary otherwise you will have repeat buttons)
+    // Deleting the topics prior to adding new topics
     $("#topicButtons").empty();
 
-    // Looping through the array of movies
+    // Looping through the array of topics
     for (i=0; i < topics.length; i++) {
         var topicButton = $("<button>");
         topicButton.addClass("btn btn-info m-2 topicButton");
@@ -27,12 +26,12 @@ function displayGifs() {
     // Insert topic into the query URL
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=MevZlV0JPdtVt3MKQBrlnNwOmZmGV7bh&limit=10";
 
-    // Do the AJAX thing
+    // Call the API
     $.ajax({
         url: queryURL,
         method: "GET"
     })
-        // After response is returned, do this thing
+        // After response is returned, do everything else
         .then(function(response) {
 
             // Store array of results in a variable
@@ -52,14 +51,14 @@ function displayGifs() {
   
                 // Creating a paragraph tag with the result item's rating
                 var p = $("<p>").text("Rating: " + rating);
-                // p.addClass("text-center");
   
                 // Creating an image tag
                 var topicImage = $("<img>");
   
-                // Giving the image tag an src attribute of a proprty pulled off the
-                // result item
+                // Giving the image tag a default still URL src
                 topicImage.attr("src", results[i].images.fixed_height_still.url);
+
+                // Adding data attributes for pausing/unpausing gif functionality
                 topicImage.attr("data-still", results[i].images.fixed_height_still.url);
                 topicImage.attr("data-animate", results[i].images.fixed_height.url);
                 topicImage.attr("data-state", "still");
@@ -121,18 +120,18 @@ $("#topicSubmit").on("click", function() {
   
                 // Creating a paragraph tag with the result item's rating
                 var p = $("<p>").text("Rating: " + rating);
-                p.addClass("text-center");
   
                 // Creating an image tag
                 var topicImage = $("<img>");
   
-                // Giving the image tag an src attribute of a proprty pulled off the
-                // result item
-                topicImage.attr("src", results[i].images.fixed_height_still.url);
-                topicImage.attr("data-still", results[i].images.fixed_height_still.url);
-                topicImage.attr("data-animate", results[i].images.fixed_height.url);
-                topicImage.attr("data-state", "still");
-                topicImage.addClass("gif");
+                 // Giving the image tag a default still URL src
+                 topicImage.attr("src", results[i].images.fixed_height_still.url);
+
+                 // Adding data attributes for pausing/unpausing gif functionality
+                 topicImage.attr("data-still", results[i].images.fixed_height_still.url);
+                 topicImage.attr("data-animate", results[i].images.fixed_height.url);
+                 topicImage.attr("data-state", "still");
+                 topicImage.addClass("gif");
   
                 // Appending the paragraph and personImage we created to the "gifDiv" div we created
                 gifDiv.append(p);
