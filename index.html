@@ -14,8 +14,8 @@
     <div id="bodyWrapper">
 
         <div class="jumbotron">
-            <h1 class="text-center pb-4">Giftastic Beasts & Where to Find Them</h1>
-            <h3 class="text-center">Your premier source for gifs of fictional and mythological beasts.</h3>
+            <h1 class="text-center pb-4">Giftastic Games</h1>
+            <h3 class="text-center">Your premier source for gifs of all things gaming.</h3>
         </div>
 
         <div class="container">
@@ -23,7 +23,7 @@
 
                 <!-- Section for pre-populated and newly-generated beast buttons -->
                 <div class="col-12 pb-4">
-                    <div id="beastButtons"></div>
+                    <div id="topicButtons"></div>
                 </div>
 
             </div>
@@ -39,8 +39,9 @@
 
                 <!-- Form for submitting new beasts -->
                 <div class="col-4 pb-4">
-                    <div id="form">
-                        
+                    <div id="form-group">
+                        <label for="formTextArea">Enter a gaming-related word or phrase here. Stumped? Try action movie or comic book heroes!</label>
+                        <textarea class="form-control" id="formTextArea"></textarea>
                     </div>
                 </div>
 
@@ -48,6 +49,11 @@
         </div>
 
     </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/javascript/logic.js"></script>
 </body>
 
 </html>
